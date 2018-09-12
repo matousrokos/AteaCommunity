@@ -17,7 +17,7 @@
   },
   "variables": {
     "AC_VNETSubnet1Name": "FrontEnd",
-    "AC_VNETSubnet2Name": "Backend",
+    "AC_VNETSubnet2Name": "BackEnd"
   },
     "resources": [
       {
