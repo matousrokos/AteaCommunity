@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "AC_VNETPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.0.0/16"
+    },
+    "AC_VNETSubnet1Prefix": {
+      "type": "string",
+      "defaultValue": "10.0.0.0/24"
+    },
+    "AC_VNETSubnet2Prefix": {
+      "type": "string",
+      "defaultValue": "10.0.1.0/24"
+    }
+  },
+  "variables": {
+    "AC_VNETSubnet1Name": "FrontEnd",
+    "AC_VNETSubnet2Name": "Backend",
+  },
+    "resources": [
+      {
+        "name": "AC_VNET",
+        "type": "Microsoft.Network/virtualNetworks",
+        "location": "[resourceGroup().location]",
+        "apiVersion": "2016-03-30",
+        "dependsOn": [],
+        "tags": {
+          "displayName": "AC_VNET"
+        },
+        "properties": {
+          "addressSpace": {
+            "addressPrefixes": [
+              "[parameters('AC_VNETPrefix')]"
+            ]
+          },
+          "subnets": [
+            {
+              "name": "[variables('AC_VNETSubnet1Name')]",
+              "properties": {
+                "addressPrefix": "[parameters('AC_VNETSubnet1Prefix')]"
+              }
+            },
+            {
+              "name": "[variables('AC_VNETSubnet2Name')]",
+              "properties": {
+                "addressPrefix": "[parameters('AC_VNETSubnet2Prefix')]"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
